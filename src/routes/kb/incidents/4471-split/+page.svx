@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 · Two date bugs in one ticket'
 owner: support desk
-status: reviewed
+status: closed
 reviewed: '2026-11-06'
 signature: wizardofchaos-ai
 ---
@@ -36,5 +36,14 @@ The accepted decision 0001 documents why the desk used subject matching. Preserv
 <QueueTimeline ticket={4471} />
 
 The chart separates report arrival from the desk's merge work. Use the received series when assessing when reports first came in.
+
+## Engineering outcome
+
+The engineering update records #4471 as closed on 5 October 2026. The two causes have separate outcomes:
+
+- [Parser · issue #1](https://github.com/wizardofchaos-ai/mega-dev-s01e03/issues/1) was fixed by `fix(dates): parse dd/mm for eu locales`.
+- [Date hint · issue #2](https://github.com/wizardofchaos-ai/mega-dev-s01e03/issues/2) was closed as won't fix after the `booking-v3` form was retired.
+
+The report counts above describe the export and stay tied to the original intake record.
 
 <RenderStamp {signature} />
