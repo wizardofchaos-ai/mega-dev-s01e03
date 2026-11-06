@@ -1,0 +1,40 @@
+---
+layout: runbook
+title: '#4471 · Two date bugs in one ticket'
+owner: support desk
+status: reviewed
+reviewed: '2026-11-06'
+signature: wizardofchaos-ai
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+  const { signature } = metadata;
+</script>
+
+The desk merged two date failures into #4471. Both can produce a booking on the wrong day, but they start at different points in the flow and need different fixes.
+
+## What was merged
+
+<CauseTable ticket={4471} />
+
+- **`parser` — shared date parser.** It reads numeric dates month first even for tenants whose locale writes the day first. Keep #4471 with this cause. For example, report `R-41200` describes an April date landing in July. Parse according to the tenant's locale and test with an unambiguous day greater than 12 as well as a date whose day and month are both at most 12.
+- **`hint` — booking-v3 date input.** On the form, `booking-v3` advertises `MM/DD/YYYY`. People follow the hint, then the form reads the input day first for the tenant. Track this in a separate ticket. For example, `R-41230` came through the booking-v3 form for a tenant with a day-first locale. Generate the hint from the same locale and format used by the form's parser.
+
+The table shows the ticket assignments at the time of the export. It deduplicates by report ID before filtering for #4471 and derives causes from the tenant directory, locale, booking form and channel. The **tagged as** column keeps the intake guesses visible. The desk's one-day-move notes are counted in the causes where those reports belong.
+
+## How to triage new reports
+
+Compare the cause before merging. Identical subjects can describe different failures: an Alder Physio booking-v3 form submission is a `hint` case, while an app report from the same tenant is a `parser` case. Different subjects can describe the same failure, for example the app and email reports from Kettle Books. If a tenant is missing or the cause cannot be established, leave the report for review before merging. Record the tenant, channel and cause when filing so the next triager can reproduce the decision.
+
+The accepted decision 0001 documents why the desk used subject matching. Preserve it as history and record any replacement as a new decision.
+
+## When reports arrived and when the desk merged them
+
+<QueueTimeline ticket={4471} />
+
+The chart separates report arrival from the desk's merge work. Use the received series when assessing when reports first came in.
+
+<RenderStamp {signature} />
