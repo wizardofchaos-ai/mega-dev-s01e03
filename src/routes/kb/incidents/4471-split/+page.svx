@@ -4,7 +4,7 @@ title: '#4471 · Two date bugs in one ticket'
 owner: support desk
 status: closed
 reviewed: '2026-11-06'
-signature: wizardofchaos-ai
+signature: "v1.eyJzdWIiOiI3NDQzIiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTM5NzU0NjksImV4cCI6MTc5NDA2MTg2OX0.3wNohoEXOi_7-AC2_WwM0wm8clh_o-_Ydr3cSUUFVKE"
 ---
 
 <script>
